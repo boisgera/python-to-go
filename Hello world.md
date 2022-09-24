@@ -8,6 +8,7 @@ print("Hello world!")
 ```
 $ python app.py
 Hello world!
+```
 
 `app.go`
 
