@@ -53,7 +53,7 @@ program entry point.
 --------------------------------------------------------------------------------
 
 In Python, the `print` function adds a newline to its argument,
-which is often what you want.
+which is probably what you want by default.
 
 ```
 >>> print("Hello world!")
@@ -80,5 +80,6 @@ but the `println` function does
 
 ```
 > println("Hello world!")
+Hello world!
 >
 ```
