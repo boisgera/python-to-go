@@ -4,7 +4,7 @@ Hello world!
 The classic "Hello world!" program in Python (`hello.py`):
 
 ```python
-print("Hello world!")
+print("Hello world! 👋")
 ```
 
 Execute this program:
@@ -20,7 +20,7 @@ The corresponding program in Go (`hello.go`):
 package main
 
 func main() {
-    println("Hello world!")
+    println("Hello world! 👋")
 }
 ```
 
@@ -31,19 +31,73 @@ $ go run hello.go
 Hello world!
 ```
 
---------------------------------------------------------------------------------
+# Packages and Modules
 
-In Go, the `package main` declaration is mandatory for programs.
+## Python Modules
 
-In our Python example, it would probably be a good idea to enclose our
-code in a function
+Our Python file `hello.py` is a program and at the same time a Python module. 
+Start the python interpreter, import the `hello` module and 
+you will be greeted with the message.
+
+```pycon
+>>> import hello
+Hello world! 👋
+```
+
+If you intend to use `hello.py` as a module, 
+you probably don't want the message to appear when the message is imported 
+but when you call a specific function.
+To achieve this goal, replace the content of `hello.py` with:
 
 ```python
-def main():
-    print("Hello world!")
-
-main()
+def print_hello():
+    print("Hello world! 👋")
 ```
+
+Now in the Python interpreter, you need to call the `print_hello` function
+for the message to appear
+
+```pycon
+>>> import hello
+>>> hello.print_hello()
+Hello world! 👋
+```
+
+But now, we have broken the program, since the execution of `hello.py` will
+define the function `print_hello` but not execute it:
+
+```bash
+$ python hello.py  # not output!
+```
+
+In order for `hello.py` to work as intended as a program and as a module,
+we can use the magic variable `__name__`, that will be `"hello"` when
+it's imported and `"__main__"` when it's executed.
+
+```python
+def print_hello():
+    print("Hello world! 👋")
+
+if __name__ == "__main__":
+    print_hello()
+```
+
+Now everything works as expected:
+
+```bash
+$ python hello.py
+Hello world! 👋
+```
+
+and
+
+```pycon
+>>> import hello
+>>> hello.print_hello()
+Hello world! 👋
+```
+
+## Go packages
 
 In Go, this practice is mandatory. Note that in Python you need to call
 the function that you have just defined for your program to work. In Go,
