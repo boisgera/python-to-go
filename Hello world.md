@@ -11,7 +11,7 @@ Execute this program:
 
 ```bash
 $ python hello.py
-Hello world!
+Hello world! 👋
 ```
 
 The corresponding program in Go (file `hello.go`):
