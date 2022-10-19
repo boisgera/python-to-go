@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Hello world</title>
+  <title>Control Flow</title>
   <style>
     html {
       line-height: 1.5;
@@ -222,94 +222,43 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="hello-world">Hello world!</h1>
-<p>The classic “Hello world!” program in Python (file
-<code>hello.py</code>):</p>
+<h1 id="control-flow">Control Flow</h1>
+<p>The <a href="https://en.wikipedia.org/wiki/Fizz_buzz">FizzBuzz</a>
+challenge:</p>
+<blockquote>
+<p>Write a program that prints the numbers from 1 to 20. But for
+multiples of three print “Fizz” instead of the number and for the
+multiples of five print “Buzz”. For numbers which are multiples of both
+three and five print “FizzBuzz”.</p>
+</blockquote>
+<p>In Python:</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Hello world! 👋&quot;</span>)</span></code></pre></div>
-<p>Execute this program with:</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python hello.py</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> world! 👋</span></code></pre></div>
-<p>The corresponding program in Go (file <code>hello.go</code>):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span> main</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">println</span><span class="op">(</span><span class="st">&quot;Hello world! 👋&quot;</span><span class="op">)</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>Execute this program with:</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> go run hello.go</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> world! 👋</span></code></pre></div>
-<h2 id="python-modules">Python Modules</h2>
-<p>Our Python file <code>hello.py</code> is a designed as a program. But
-at the same time it’s also a Python library, a bundle of features that
-are meant to be used by other Python programs (or in the Python
-interpreter).</p>
-<p>Start the python interpreter, import <code>hello</code> and you will
-be greeted with the hello message.</p>
-<pre class="pycon"><code>&gt;&gt;&gt; import hello
-Hello world! 👋</code></pre>
-<p>If you intend to use <code>hello.py</code> as a module, you probably
-don’t want the message to appear when the message is imported but when
-you call a specific function. To achieve this goal, replace the content
-of <code>hello.py</code> with:</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_hello():</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Hello world! 👋&quot;</span>)</span></code></pre></div>
-<p>Now in the Python interpreter, you need to call the
-<code>print_hello</code> function for the message to appear</p>
-<pre class="pycon"><code>&gt;&gt;&gt; import hello
-&gt;&gt;&gt; hello.print_hello()
-Hello world! 👋</code></pre>
-<p>But now, we have broken <code>"hello.py"</code> as a program :</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python hello.py  <span class="co"># not output!</span></span></code></pre></div>
-<p>At this stage, the execution of <code>hello.py</code> will define the
-function <code>print_hello</code> but not execute it.</p>
-<p>In order for <code>hello.py</code> to work as intended as a program
-<strong>and</strong> as a library, we can use a magic variable
-<code>__name__</code> provided by Python. It will be the module name
-<code>"hello"</code> when the file is imported and
-<code>"__main__"</code> when it’s executed.</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> print_hello():</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Hello world! 👋&quot;</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    print_hello()</span></code></pre></div>
-<p>Now everything works as expected:</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python hello.py</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Hello</span> world! 👋</span></code></pre></div>
-<p>and</p>
-<pre class="pycon"><code>&gt;&gt;&gt; import hello
-&gt;&gt;&gt; hello.print_hello()
-Hello world! 👋</code></pre>
-<h2 id="go-packages">Go packages</h2>
-<p>In Go, on the other hand, there is a clear difference between
-<strong>commands</strong> (programs) and <strong>packages</strong>
-(libraries).</p>
-<p>this practice is mandatory. Note that in Python you need to call the
-function that you have just defined for your program to work. In Go,
-this is not necessary since the function called <code>main</code> is
-always the program entry point.</p>
-<hr />
-<p>In Python, the <code>print</code> function adds a newline to its
-argument, which is probably what you want by default.</p>
-<pre><code>&gt;&gt;&gt; print(&quot;Hello world!&quot;)
-Hello world!
-&gt;&gt;&gt;</code></pre>
-<p>Use the <code>end</code> parameter to override this behavior, for
-example to get rid of this extra newline.</p>
-<pre><code>&gt;&gt;&gt; print(&quot;Hello world!&quot;, end=&quot;&quot;)
-Hello world!&gt;&gt;&gt;</code></pre>
-<p>In Go, the <code>print</code> does not add a newline</p>
-<pre><code>&gt; print(&quot;Hello world!&quot;)
-Hello world!&gt;</code></pre>
-<p>but the <code>println</code> function does</p>
-<pre><code>&gt; println(&quot;Hello world!&quot;)
-Hello world!
-&gt;</code></pre>
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> number <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">21</span>):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> number <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> number <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;FizzBuzz&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> number <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Fizz&quot;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> number <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Buzz&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(number)</span></code></pre></div>
+<p>In Go</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span> n <span class="op">:=</span> <span class="dv">1</span><span class="op">;</span> n <span class="op">&lt;=</span> <span class="dv">20</span><span class="op">;</span> n <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span>  <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> n<span class="op">%</span><span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> n<span class="op">%</span><span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">println</span><span class="op">(</span><span class="st">&quot;FizzBuzz&quot;</span><span class="op">)</span>    </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> n<span class="op">%</span><span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">println</span><span class="op">(</span><span class="st">&quot;Fizz&quot;</span><span class="op">)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> n<span class="op">%</span><span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">println</span><span class="op">(</span><span class="st">&quot;Buzz&quot;</span><span class="op">)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">println</span><span class="op">(</span>n<span class="op">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>for</p>
+<p>for iteration</p>
+<p>while</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="dv">42</span> <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;42 is even&quot;</span>)</span></code></pre></div>
 </body>
 </html>
