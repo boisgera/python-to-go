@@ -4,7 +4,7 @@
 ## Variables & Types
 
 Python is **dynamically typed**; 
-the same variable can refer to several types of data
+the same variable can refer to several types of data.
 
 ```python
 a = 42        # a is an int
@@ -18,13 +18,14 @@ every variable is assigned a type when it is **declared**.
 var a int
 ```
 
-Afterwards it can be assigned values of this type.
+Variable declaration is mandatory before use; 
+afterwards it can be assigned values of this type.
 
 ``` go
 a = 42
 ```
 
-Any other kind of assignment is invalid.
+Any assignment with another data type is invalid.
 
 ```go
 a = "Hello!"  // 🪲 The Go compiler will reject this.
