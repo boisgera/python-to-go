@@ -1,7 +1,7 @@
 Hello world!
 ================================================================================
 
-The classic "Hello world!" program in Python (`hello.py`):
+The classic "Hello world!" program in Python (file `hello.py`):
 
 ```python
 print("Hello world! 👋")
@@ -14,7 +14,7 @@ $ python hello.py
 Hello world!
 ```
 
-The corresponding program in Go (`hello.go`):
+The corresponding program in Go (file `hello.go`):
 
 ```go
 package main
@@ -28,7 +28,7 @@ Execute this program with:
 
 ```bash
 $ go run hello.go
-Hello world!
+Hello world! 👋
 ```
 
 # Packages and Modules
