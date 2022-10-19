@@ -7,7 +7,7 @@ The classic "Hello world!" program in Python (file `hello.py`):
 print("Hello world! 👋")
 ```
 
-Execute this program:
+Execute this program with:
 
 ```bash
 $ python hello.py
@@ -31,13 +31,16 @@ $ go run hello.go
 Hello world! 👋
 ```
 
-# Packages and Modules
 
 ## Python Modules
 
-Our Python file `hello.py` is a program and at the same time a Python module. 
-Start the python interpreter, import the `hello` module and 
-you will be greeted with the message.
+Our Python file `hello.py` is a designed as a program. 
+But at the same time it's also a Python library, a bundle of features 
+that are meant to be used by other Python programs (or in the
+Python interpreter).
+
+Start the python interpreter, import `hello` and you will be greeted with 
+the hello message.
 
 ```pycon
 >>> import hello
@@ -63,16 +66,19 @@ for the message to appear
 Hello world! 👋
 ```
 
-But now, we have broken the program, since the execution of `hello.py` will
-define the function `print_hello` but not execute it:
+But now, we have broken `"hello.py"` as a program :
 
 ```bash
 $ python hello.py  # not output!
 ```
 
-In order for `hello.py` to work as intended as a program and as a module,
-we can use the magic variable `__name__`, that will be `"hello"` when
-it's imported and `"__main__"` when it's executed.
+At this stage, the execution of `hello.py` will
+define the function `print_hello` but not execute it.
+
+In order for `hello.py` to work as intended as a program **and** as a library,
+we can use a magic variable `__name__` provided by Python. 
+It will be the module name `"hello"` when the file is imported and
+ `"__main__"` when it's executed.
 
 ```python
 def print_hello():
@@ -99,7 +105,10 @@ Hello world! 👋
 
 ## Go packages
 
-In Go, this practice is mandatory. Note that in Python you need to call
+In Go, on the other hand, there is a clear difference between **commands**
+(programs) and **packages** (libraries).
+
+this practice is mandatory. Note that in Python you need to call
 the function that you have just defined for your program to work. In Go,
 this is not necessary since the function called `main` is always the
 program entry point.
