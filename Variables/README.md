@@ -31,7 +31,7 @@ In Go, you need to declare a variable before you make an assignment
 : 1
 ```
 
-Alternatively, the shortcut `:=` declares and assign the variable:
+Alternatively, the shortcut `:=` declares and assigns the variable:
 
 ```go
 > a := 1
