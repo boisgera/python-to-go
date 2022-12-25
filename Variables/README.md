@@ -1,6 +1,6 @@
 # Variables
 
-# Fixed/Variable Memory Location
+## Assignment Semantics
 
 A Python assignment make a variable refer to the object on the right-hand side.
 Reassign a variable and its **address** (the location in memory it points to) 
@@ -49,3 +49,12 @@ Once a variable is declared, the location in memory it points to is fixed.
 : 0xc00003b2f0
 ```
 
+**TODO.** Consequences: `a = b`, including in function calls.
+
+Consequence in GoLang (good): apparent "immutability" of data (but there is no
+immutable data actually).
+
+In GoLang, how to preserve mutability (or avoid the copy for large structures):
+pointers.
+
+Note: slices (but not arrays) and maps already use pointers.
