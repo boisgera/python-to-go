@@ -3,7 +3,8 @@
 # Fixed/Variable Memory Location
 
 A Python assignment make a variable refer to the object on the right-hand side.
-Reassign a variable and the location in memory it points to changes.
+Reassign a variable and its **address** (the location in memory it points to) 
+changes.
 
 ```python
 >>> a = 1
