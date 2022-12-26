@@ -187,6 +187,10 @@ func main() {
 
 ---
 
+## Methods
+
+---
+
 ```python
 from datetime import date
 
