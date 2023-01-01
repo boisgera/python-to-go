@@ -40,10 +40,10 @@ What is the semantics of assignment ?
 
 | Python | Go         |
 | :----- | :--------- | 
-| bool	 | bool       |
+| bool     | bool       |
 | int    | int        |
-| float	 | float64    |
-| str	 | string     |
+| float     | float64    |
+| str     | string     |
 
 ---
 
@@ -198,14 +198,14 @@ class Person:
     def __init__(self, name, year):
         self.name = name
         self.year = year
-    def getAge(self):
+    def Age(self):
         return date.today().year - self.year
 
 def main():
     guido = Person(name="Guido van Rossum", year=1956)
     print(guido.name)
     print(guido.year)
-    print(guido.getAge())
+    print(guido.Age())
 ```
 
 ---
@@ -220,7 +220,7 @@ type Person struct {
     Year int
 }
 
-func (p Person) getAge() int {
+func (p Person) Age() int {
     return time.Now().Year() - p.Year
 }
 
@@ -228,6 +228,121 @@ func main() {
     rob := Person{Name: "Robert Pike", Year: 1956}
     println(rob.Name)
     println(rob.Year)
-    println(rob.getAge())
+    println(rob.Age())
+}
+```
+
+---
+
+```go
+...
+
+func (p Person) SetName(name string) {
+    p.Name = name
+}
+
+func (p Person) SetYear(year int) {
+    p.Year = year
+}
+
+func main() {
+    rob := Person{} // ℹ️ equivalent to Person{Name: "", Year: 0}
+    rob.SetName("Robert Pike")
+    rob.SetYear(1956)
+    println(rob.Name)
+    println(rob.Year)
+    println(rob.Age())
+}
+```
+
+---
+
+```bash
+$ go run app.go 
+
+0
+2023
+```
+
+Uhu?
+
+---
+
+```go
+func (p *Person) SetName(name string) {
+    p.Name = name
+}
+
+func (p *Person) SetYear(year int) {
+    p.Year = year
+}
+```
+
+
+---
+
+```bash
+$ go run app.go 
+Robert Pike
+1956
+67
+```
+
+---
+
+```bash
+$ go mod init app
+$ cat go.mod
+module app
+
+go 1.19
+```
+
+---
+
+`app/person/person.go`
+
+```go
+package person
+
+import "time"
+
+type Person struct {
+    Name string
+    Year int
+}
+
+func New(name string, year int) Person {
+    return Person{Name: name, Year: year}
+}
+
+func (p *Person) SetName(name string) {
+    p.Name = name
+}
+
+func (p *Person) SetYear(year int) {
+    p.Year = year
+}
+```
+
+---
+
+`app.go`
+
+```go
+package main
+
+import (
+    "app/person"
+    "fmt"
+)
+
+func main() {
+    rob := person.Person{}
+    rob.SetName("Robert Pike")
+    rob.SetYear(1956)
+    fmt.Println(rob.Name)
+    fmt.Println(rob.Year)
+    fmt.Println(rob.Age())
 }
 ```
