@@ -12,6 +12,129 @@ theme: uncover
 
 # Typing
 
+---
+
+### The Good Old Days
+
+`factorial.py`
+
+```python
+import sys
+
+def factorial(n):
+    fact_n = 1
+    for i in range(n):
+        fact_n = fact_n * (i + 1)
+    return fact_n
+
+n = sys.argv[1]
+print(factorial(n))
+```
+
+---
+
+###  🪲 Ooops
+
+The program fails at runtime:
+
+```bash
+$ python factorial.py 10
+Traceback (most recent call last):
+  File "fact.py", line 10, in <module>
+    print(factorial(n))
+  File "fact.py", line 4, in factorial
+    for i in range(n):
+TypeError: 'str' object cannot be interpreted as an integer
+```
+
+---
+
+### 🧠 Error Analysis
+
+  - The elements of `sys.argv` are strings 
+  
+  - The argument of `factorial` should be an integer
+
+---
+
+### 🩹 Fix
+
+
+
+```python
+import sys
+
+def factorial(n):
+    fact_n = 1
+    for i in range(n):
+        fact_n = fact_n * (i + 1)
+    return fact_n
+
+n = str(sys.argv[1])
+print(factorial(n))
+```
+
+```bash
+$ python fact.py 10
+3628800
+```
+
+---
+
+### Nowadays
+
+The same program, with a few **type hints**:
+
+```python
+import sys
+
+def factorial(n: int) -> int:
+    for i in range(n):
+        fact_n = fact_n * (i + 1)
+    return fact_n
+
+n = sys.argv[1]
+print(factorial(n))
+```
+
+in Visual Studio Code, with the optional static type checker [mypy](https://mypy-lang.org/) enabled.
+
+---
+
+
+![](images/mypy.png)
+
+---
+
+
+---
+
+Typing Nazi
+
+```python
+import sys
+
+def factorial(n: int) -> int:
+    i: int
+    fact_n: int = 1
+    for i in range(n):
+        fact_n = fact_n * (i + 1)
+    return fact_n
+
+n = sys.argv[1]
+print(factorial(n))
+```
+
+
+---
+
+
+  - Dynamic or Static 
+
+  - Mandatory or Optional
+
+---
+
   - Every variable has a type
 
   - Can the type change at runtime?
@@ -22,6 +145,8 @@ theme: uncover
 ---
 
 # Assignment
+
+# TODO: Later 
 
 What is the semantics of assignment ?
 

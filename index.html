@@ -13,6 +13,107 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-theme="uncover" style="--theme:uncover;">
 <h1>Typing</h1>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-theme="uncover" style="--theme:uncover;">
+<h3>The Good Old Days</h3>
+<p><code>factorial.py</code></p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> sys
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">factorial</span>(<span class="hljs-params">n</span>):
+    fact_n = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+        fact_n = fact_n * (i + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> fact_n
+
+n = sys.argv[<span class="hljs-number">1</span>]
+<span class="hljs-built_in">print</span>(factorial(n))
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-theme="uncover" style="--theme:uncover;">
+<h3><img class="emoji" draggable="false" alt="🪲" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1fab2.svg" data-marp-twemoji=""/> Ooops</h3>
+<p>The program fails at runtime:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">$ python factorial.py 10
+Traceback (most recent call last):
+  File <span class="hljs-string">&quot;fact.py&quot;</span>, line 10, <span class="hljs-keyword">in</span> &lt;module&gt;
+    <span class="hljs-built_in">print</span>(factorial(n))
+  File <span class="hljs-string">&quot;fact.py&quot;</span>, line 4, <span class="hljs-keyword">in</span> factorial
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):
+TypeError: <span class="hljs-string">&#x27;str&#x27;</span> object cannot be interpreted as an <span class="hljs-built_in">integer</span>
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-theme="uncover" style="--theme:uncover;">
+<h3><img class="emoji" draggable="false" alt="🧠" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9e0.svg" data-marp-twemoji=""/> Error Analysis</h3>
+<ul>
+<li>
+<p>The elements of <code>sys.argv</code> are strings</p>
+</li>
+<li>
+<p>The argument of <code>factorial</code> should be an integer</p>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-theme="uncover" style="--theme:uncover;">
+<h3><img class="emoji" draggable="false" alt="🩹" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1fa79.svg" data-marp-twemoji=""/> Fix</h3>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> sys
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">factorial</span>(<span class="hljs-params">n</span>):
+    fact_n = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+        fact_n = fact_n * (i + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> fact_n
+
+n = <span class="hljs-built_in">str</span>(sys.argv[<span class="hljs-number">1</span>])
+<span class="hljs-built_in">print</span>(factorial(n))
+</code></pre>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">$ python fact.py 10
+3628800
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-theme="uncover" style="--theme:uncover;">
+<h3>Nowadays</h3>
+<p>The same program, with a few <strong>type hints</strong>:</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> sys
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">factorial</span>(<span class="hljs-params">n: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+        fact_n = fact_n * (i + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> fact_n
+
+n = sys.argv[<span class="hljs-number">1</span>]
+<span class="hljs-built_in">print</span>(factorial(n))
+</code></pre>
+<p>in Visual Studio Code, with the optional static type checker <a href="https://mypy-lang.org/">mypy</a> enabled.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-theme="uncover" style="--theme:uncover;">
+<p><img src="images/mypy.png" alt="" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-theme="uncover" style="--theme:uncover;"></section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-theme="uncover" style="--theme:uncover;">
+<p>Typing Nazi</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">import</span> sys
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">factorial</span>(<span class="hljs-params">n: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+    i: <span class="hljs-built_in">int</span>
+    fact_n: <span class="hljs-built_in">int</span> = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+        fact_n = fact_n * (i + <span class="hljs-number">1</span>)
+    <span class="hljs-keyword">return</span> fact_n
+
+n = sys.argv[<span class="hljs-number">1</span>]
+<span class="hljs-built_in">print</span>(factorial(n))
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-theme="uncover" style="--theme:uncover;">
+<ul>
+<li>
+<p>Dynamic or Static</p>
+</li>
+<li>
+<p>Mandatory or Optional</p>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-theme="uncover" style="--theme:uncover;">
 <ul>
 <li>
 <p>Every variable has a type</p>
@@ -25,8 +126,9 @@
 </li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-theme="uncover" style="--theme:uncover;">
 <h1>Assignment</h1>
+<h1>TODO: Later</h1>
 <p>What is the semantics of assignment ?</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>sum = 1 + 1
 </code></pre>
@@ -42,7 +144,7 @@
 </li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-theme="uncover" style="--theme:uncover;">
 <h1>Basic Types</h1>
 <table>
 <thead>
@@ -71,7 +173,7 @@
 </tbody>
 </table>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-theme="uncover" style="--theme:uncover;">
 <h1>Do It Yourself</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>$ python -c 'print(type(42).__name__)'
 int
@@ -80,7 +182,7 @@ int
 int
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-theme="uncover" style="--theme:uncover;">
 <h1>Functions</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> date
 
@@ -88,7 +190,7 @@ int
     <span class="hljs-keyword">return</span> date.today().year - self.year
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">import</span> time
 
 def getDuration(year <span class="hljs-type">int</span>) <span class="hljs-type">int</span> {
@@ -96,7 +198,7 @@ def getDuration(year <span class="hljs-type">int</span>) <span class="hljs-type"
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-theme="uncover" style="--theme:uncover;">
 <h1>Lists <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></g></g></g></svg></mjx-container> Slices</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>&gt;&gt;&gt; l = [1, 2, 4]
 &gt;&gt;&gt; l[0]
@@ -113,7 +215,7 @@ def getDuration(year <span class="hljs-type">int</span>) <span class="hljs-type"
 8   
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>&gt; s := []int{1, 2, 4}
 : [1 2 4]
 &gt; s[0]
@@ -128,7 +230,7 @@ def getDuration(year <span class="hljs-type">int</span>) <span class="hljs-type"
 : [1 2 4 8]
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-theme="uncover" style="--theme:uncover;">
 <h1>Dicts <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></g></g></g></svg></mjx-container>  Maps</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>&gt;&gt;&gt; d = {&quot;a&quot;: 1, &quot;b&quot;: 2}
 &gt;&gt;&gt; d[&quot;a&quot;]
@@ -144,7 +246,7 @@ b 2
 c 3
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>&gt; m := map[string]int{&quot;a&quot;: 1, &quot;b&quot;: 2}
 : map[a:1 b:2]
 &gt; m[&quot;a&quot;]
@@ -160,7 +262,7 @@ c 3
 : map[a:1 b:2 c:3]
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-theme="uncover" style="--theme:uncover;">
 <h1>Objects <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></g></g></g></svg></mjx-container> Structs</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name, year</span>):
@@ -173,7 +275,7 @@ c 3
     <span class="hljs-built_in">print</span>(guido.year)
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"> <span class="hljs-keyword">type</span> Person <span class="hljs-keyword">struct</span> {
     Name <span class="hljs-type">string</span>
     Year <span class="hljs-type">int</span>
@@ -186,27 +288,27 @@ c 3
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-theme="uncover" style="--theme:uncover;">
 <h2>Methods</h2>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> date
 
 <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>:
     <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name, year</span>):
         self.name = name
         self.year = year
-    <span class="hljs-keyword">def</span> <span class="hljs-title function_">getAge</span>(<span class="hljs-params">self</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">Age</span>(<span class="hljs-params">self</span>):
         <span class="hljs-keyword">return</span> date.today().year - self.year
 
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():
     guido = Person(name=<span class="hljs-string">&quot;Guido van Rossum&quot;</span>, year=<span class="hljs-number">1956</span>)
     <span class="hljs-built_in">print</span>(guido.name)
     <span class="hljs-built_in">print</span>(guido.year)
-    <span class="hljs-built_in">print</span>(guido.getAge())
+    <span class="hljs-built_in">print</span>(guido.Age())
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
 <span class="hljs-keyword">import</span> <span class="hljs-string">&quot;time&quot;</span>
@@ -216,7 +318,7 @@ c 3
     Year <span class="hljs-type">int</span>
 }
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p Person)</span></span> getAge() <span class="hljs-type">int</span> {
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p Person)</span></span> Age() <span class="hljs-type">int</span> {
     <span class="hljs-keyword">return</span> time.Now().Year() - p.Year
 }
 
@@ -224,7 +326,104 @@ c 3
     rob := Person{Name: <span class="hljs-string">&quot;Robert Pike&quot;</span>, Year: <span class="hljs-number">1956</span>}
     <span class="hljs-built_in">println</span>(rob.Name)
     <span class="hljs-built_in">println</span>(rob.Year)
-    <span class="hljs-built_in">println</span>(rob.getAge())
+    <span class="hljs-built_in">println</span>(rob.Age())
+}
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-theme="uncover" style="--theme:uncover;">
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go">...
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p Person)</span></span> SetName(name <span class="hljs-type">string</span>) {
+    p.Name = name
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p Person)</span></span> SetYear(year <span class="hljs-type">int</span>) {
+    p.Year = year
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    rob := Person{} <span class="hljs-comment">// <img class="emoji" draggable="false" alt="ℹ" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2139.svg" data-marp-twemoji=""/> equivalent to Person{Name: &quot;&quot;, Year: 0}</span>
+    rob.SetName(<span class="hljs-string">&quot;Robert Pike&quot;</span>)
+    rob.SetYear(<span class="hljs-number">1956</span>)
+    <span class="hljs-built_in">println</span>(rob.Name)
+    <span class="hljs-built_in">println</span>(rob.Year)
+    <span class="hljs-built_in">println</span>(rob.Age())
+}
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-theme="uncover" style="--theme:uncover;">
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">$ go run app.go 
+
+0
+2023
+</code></pre>
+<p>Uhu?</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-theme="uncover" style="--theme:uncover;">
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *Person)</span></span> SetName(name <span class="hljs-type">string</span>) {
+    p.Name = name
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *Person)</span></span> SetYear(year <span class="hljs-type">int</span>) {
+    p.Year = year
+}
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-theme="uncover" style="--theme:uncover;">
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">$ go run app.go 
+Robert Pike
+1956
+67
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-theme="uncover" style="--theme:uncover;">
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">$ go mod init app
+$ <span class="hljs-built_in">cat</span> go.mod
+module app
+
+go 1.19
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-theme="uncover" style="--theme:uncover;">
+<p><code>app/person/person.go</code></p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> person
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;time&quot;</span>
+
+<span class="hljs-keyword">type</span> Person <span class="hljs-keyword">struct</span> {
+    Name <span class="hljs-type">string</span>
+    Year <span class="hljs-type">int</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">New</span><span class="hljs-params">(name <span class="hljs-type">string</span>, year <span class="hljs-type">int</span>)</span></span> Person {
+    <span class="hljs-keyword">return</span> Person{Name: name, Year: year}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *Person)</span></span> SetName(name <span class="hljs-type">string</span>) {
+    p.Name = name
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *Person)</span></span> SetYear(year <span class="hljs-type">int</span>) {
+    p.Year = year
+}
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-theme="uncover" style="--theme:uncover;">
+<p><code>app.go</code></p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;app/person&quot;</span>
+    <span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    rob := person.Person{}
+    rob.SetName(<span class="hljs-string">&quot;Robert Pike&quot;</span>)
+    rob.SetYear(<span class="hljs-number">1956</span>)
+    fmt.Println(rob.Name)
+    fmt.Println(rob.Year)
+    fmt.Println(rob.Age())
 }
 </code></pre>
 </section>
