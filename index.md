@@ -49,7 +49,7 @@ TypeError: 'str' object cannot be interpreted as an integer
 
 ---
 
-### 🧠 Error Analysis
+### 🧠 Traceback & Program Analysis
 
   - The elements of `sys.argv` are strings 
   
@@ -70,7 +70,7 @@ def factorial(n):
         fact_n = fact_n * (i + 1)
     return fact_n
 
-n = str(sys.argv[1])
+n = int(sys.argv[1])
 print(factorial(n))
 ```
 

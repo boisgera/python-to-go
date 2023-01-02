@@ -42,7 +42,7 @@ TypeError: <span class="hljs-string">&#x27;str&#x27;</span> object cannot be int
 </code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-theme="uncover" style="--theme:uncover;">
-<h3><img class="emoji" draggable="false" alt="🧠" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9e0.svg" data-marp-twemoji=""/> Error Analysis</h3>
+<h3><img class="emoji" draggable="false" alt="🧠" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9e0.svg" data-marp-twemoji=""/> Traceback &amp; Program Analysis</h3>
 <ul>
 <li>
 <p>The elements of <code>sys.argv</code> are strings</p>
@@ -62,7 +62,7 @@ TypeError: <span class="hljs-string">&#x27;str&#x27;</span> object cannot be int
         fact_n = fact_n * (i + <span class="hljs-number">1</span>)
     <span class="hljs-keyword">return</span> fact_n
 
-n = <span class="hljs-built_in">str</span>(sys.argv[<span class="hljs-number">1</span>])
+n = <span class="hljs-built_in">int</span>(sys.argv[<span class="hljs-number">1</span>])
 <span class="hljs-built_in">print</span>(factorial(n))
 </code></pre>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">$ python fact.py 10
