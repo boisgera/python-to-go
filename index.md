@@ -5,20 +5,39 @@ author: Sébastien Boisgerault (@boisgera)
 theme: uncover
 ---
 
-# From Python to Go
+# From 🐍 Python to 🦫 Go
+
+Introduction to Go for Python devs
+
 
 ---
 
+### Selected References
 
-# Typing
+  - 📖 [A Tour of Go](https://go.dev/tour/welcome/1)
+
+  - 📖 [Go by Example](https://gobyexample.com/)
+
+  - 📖 [The Go Programming Language Specification](https://go.dev/ref/spec)
+  
+---
+
+
+# 🧭 Typing
+
+##  Dynamic vs Static
 
 ---
 
-### The Good Old Days
+### 🐍 The Good Old Days
 
-`factorial.py`
+```bash
+$ python factorial.py 10
+3628800
+```
 
 ```python
+# filename: factorial.py
 import sys
 
 def factorial(n):
@@ -40,28 +59,35 @@ The program fails at runtime:
 ```bash
 $ python factorial.py 10
 Traceback (most recent call last):
-  File "fact.py", line 10, in <module>
+  File "/home/boisgera/tmp/r/factorial.py", line 11, in <module>
     print(factorial(n))
-  File "fact.py", line 4, in factorial
+          ^^^^^^^^^^^^
+  File "/home/boisgera/tmp/r/factorial.py", line 6, in factorial
     for i in range(n):
+             ^^^^^^^^
 TypeError: 'str' object cannot be interpreted as an integer
 ```
 
 ---
 
-### 🧠 Traceback & Program Analysis
+### Traceback & Program Analysis
 
-  - The elements of `sys.argv` are strings 
+🤔
+
+ 1. `n` should be an integer for `range(n)` to work,
+
+ 2. `factorial(n)`: same analysis,
+
+ 3. but instead `n` a string,
+
+ 4. because the elements of `sys.argv` are strings !
   
-  - The argument of `factorial` should be an integer
+😌
 
 ---
 
-### 🩹 Fix
-
-
-
 ```python
+# filename: factorial.py
 import sys
 
 def factorial(n):
@@ -70,7 +96,27 @@ def factorial(n):
         fact_n = fact_n * (i + 1)
     return fact_n
 
-n = int(sys.argv[1])
+n = sys.argv[1]  # 🪲 n should be an int
+print(factorial(n))
+```
+
+---
+
+### 🩹 Fix
+
+
+
+```python
+# filename: factorial.py
+import sys
+
+def factorial(n):
+    fact_n = 1
+    for i in range(n):
+        fact_n = fact_n * (i + 1)
+    return fact_n
+
+n = int(sys.argv[1])  # 🩹 str -> int
 print(factorial(n))
 ```
 
@@ -81,11 +127,12 @@ $ python fact.py 10
 
 ---
 
-### Nowadays
+### Nowadays: Gradual Typing
 
 The same program, with a few **type hints**:
 
 ```python
+# filename: factorial.py
 import sys
 
 def factorial(n: int) -> int:
@@ -97,21 +144,22 @@ n = sys.argv[1]
 print(factorial(n))
 ```
 
-in Visual Studio Code, with the optional static type checker [mypy](https://mypy-lang.org/) enabled.
-
 ---
+
+### Static Type Checking
+
+in Visual Studio Code, with [mypy](https://mypy-lang.org/) enabled:
+
 
 
 ![](images/mypy.png)
 
 ---
 
-
----
-
-Typing Nazi
+All types declared
 
 ```python
+# filename: factorial.py
 import sys
 
 def factorial(n: int) -> int:
@@ -121,42 +169,73 @@ def factorial(n: int) -> int:
         fact_n = fact_n * (i + 1)
     return fact_n
 
-n = sys.argv[1]
+n: int = sys.argv[1]
 print(factorial(n))
 ```
 
+---
+### 🐍
+
+  - Python is **dynamically typed**: the same variable may refer to different types of object at different moments.
+
+  - Developers may use (static) type hints + static type checkers to *willingly* restrict this freedom.
+
+---
+### 🦫
+
+  - Go is **statically typed**: the type of every variable is known at compile-time.
+
+  - Because it has been either:
+
+    - **declared** by the developper or,
+
+    - **inferred** by the compiler.
 
 ---
 
+```go
+var message string       // declaration
+message = "Hello world!" // assignment
+```
 
-  - Dynamic or Static 
+```go
+var message string = "Hello world!" // combined
+```
 
-  - Mandatory or Optional
+In this context, the type of message is obvious; 
+we can drop the explicit type information.
+
+```go
+var message = "Hello world!"  // combined
+```
 
 ---
 
-  - Every variable has a type
+In the body of functions (⚠️ but not at the top-level!)
 
-  - Can the type change at runtime?
+```go
+var message = "Hello world!"  // combined
+```
 
-  - Should the type change at runtime?
+can be replaced with the **short variable declaration**:
 
+```
+message := "Hello world!"
+```
 
+which *feels* like dynamical typing (but isn't 😀).
+ 
 ---
 
-# Assignment
-
-# TODO: Later 
-
-What is the semantics of assignment ?
-
-    sum = 1 + 1
-
-  - 🧮 Evaluate the right-hand side
-
-  - 🤨 ???
-
-  - 💸 Profit!
+```bash
+$ yaegi
+> a := "Hello world!"
+: Hello world!
+> a = "Hello gophers! 🦫"
+: Hello gophers! 🦫
+> a = 42
+1:32: cannot convert 42 to string
+```
 
 ---
 
@@ -180,13 +259,21 @@ int
 ```
 
 ```
+go install github.com/traefik/yaegi/cmd/yaegi@latest
+```
+
+```
 $ yaegi run -e 'reflect.TypeOf(42)'
 int
 ```
 
 ---
 
-# Functions
+# 🧭 Functions
+
+---
+
+## 🐍 Python
 
 ```python
 from datetime import date
@@ -196,6 +283,8 @@ def getDuration(year):
 ```
 
 ---
+
+## 🦫 Go
 
 ```go
 import time
@@ -207,7 +296,7 @@ def getDuration(year int) int {
 
 ---
 
-# Lists $\to$ Slices
+# 🐍 Lists $\to$ 🦫 Slices
 
 ```
 >>> l = [1, 2, 4]
@@ -244,7 +333,7 @@ def getDuration(year int) int {
 
 ---
 
-# Dicts $\to$  Maps
+# 🐍 Dicts $\to$ 🦫 Maps
 
 ```
 >>> d = {"a": 1, "b": 2}
@@ -280,7 +369,7 @@ c 3
 ```
 ---
 
-# Objects $\to$ Structs
+# 🐍 Objects $\to$ 🦫 Structs
 
 ```python
 class Person:
@@ -312,9 +401,11 @@ func main() {
 
 ---
 
-## Methods
+# 🧭 Object Methods
 
 ---
+
+### 🐍 Python methods
 
 ```python
 from datetime import date
@@ -334,6 +425,7 @@ def main():
 ```
 
 ---
+### 🦫 Go Methods
 
 ```go
 package main
@@ -358,6 +450,8 @@ func main() {
 ```
 
 ---
+
+### 🦫 Go Methods (continued)
 
 ```go
 ...
@@ -393,6 +487,77 @@ Uhu?
 
 ---
 
+# Assignment
+
+
+What is the semantics of assignment ?
+
+    sum = 1 + 1
+
+  - 🧮 Evaluate the right-hand side
+
+  - 🤨 ???
+
+  - 💸 Profit!
+
+---
+
+### 🐍 Assignment in Python
+
+Variables **refer to** a location in memory (via a **pointer**).
+
+Assignment **rebinds** the pointer to a new location.
+
+```python
+>>> a = 1 + 1
+>>> print(hex(id(a)))
+0x559b96062d60
+>>> a = 42
+>>> print(hex(id(a)))
+0x559b96063260
+```
+
+---
+
+### 🦫 Assignment in Go
+
+Variables store data in a fixed location:
+
+```go
+$ yaegi
+> a := 1 + 1
+: 2
+> &a
+: 0xc00003a280
+> a = 42
+: 42
+> &a
+: 0xc00003a280
+```
+
+---
+
+We can also store content at a location
+
+```go
+> a := 1 + 1
+: 2
+> p := &a // address of an int
+: 0xc00014d230
+> reflect.TypeOf(a)
+: int
+> reflect.TypeOf(p)
+: *int
+> *p = 42
+: 42
+> a
+: 42
+```
+
+---
+
+### Back to the Go methods
+
 ```go
 func (p *Person) SetName(name string) {
     p.Name = name
@@ -401,10 +566,21 @@ func (p *Person) SetName(name string) {
 func (p *Person) SetYear(year int) {
     p.Year = year
 }
+
+func main() {
+    rob := Person{}
+    rob.SetName("Robert Pike")
+    rob.SetYear(1956)
+    println(rob.Name)
+    println(rob.Year)
+    println(rob.Age())
+}
 ```
 
 
 ---
+
+
 
 ```bash
 $ go run app.go 
@@ -413,7 +589,11 @@ Robert Pike
 67
 ```
 
+# 👍
+
 ---
+
+### 🧹 Clean-up
 
 ```bash
 $ go mod init app
@@ -435,10 +615,6 @@ import "time"
 type Person struct {
     Name string
     Year int
-}
-
-func New(name string, year int) Person {
-    return Person{Name: name, Year: year}
 }
 
 func (p *Person) SetName(name string) {
