@@ -18,6 +18,8 @@ Introduction to Go for Python devs
 
   - 📖 [Go by Example](https://gobyexample.com/)
 
+  - 📖 [Effective Go](https://go.dev/doc/effective_go)
+
   - 📖 [The Go Programming Language Specification](https://go.dev/ref/spec)
   
 ---
@@ -278,7 +280,7 @@ int
 ```python
 from datetime import date
 
-def getDuration(year):
+def get_duration(year):
     return date.today().year - self.year
 ```
 
@@ -289,7 +291,7 @@ def getDuration(year):
 ```go
 import time
 
-def getDuration(year int) int {
+func GetDuration(year int) int {
     return time.Now().Year() - year
 }
 ```
@@ -414,14 +416,14 @@ class Person:
     def __init__(self, name, year):
         self.name = name
         self.year = year
-    def Age(self):
+    def get_age(self):
         return date.today().year - self.year
 
 def main():
     guido = Person(name="Guido van Rossum", year=1956)
     print(guido.name)
     print(guido.year)
-    print(guido.Age())
+    print(guido.get_age())
 ```
 
 ---
