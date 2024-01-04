@@ -679,6 +679,7 @@ $ go build
 ```
 
  creates a `app` executable for Linux.
+
 ```bash
 $ ./app
 Robert Pike
@@ -687,12 +688,28 @@ Robert Pike
 ```
 
 ---
-### Cross-compilation
+### 🖥️ Cross-compilation
 
-  - `GOOS=windows GOARCH=amd64 go build`
+  - 🪟 `GOOS=windows GOARCH=amd64 go build`
 
-    creates a windows/amd-64 executable `app.exe`.
+    $\to$ windows/amd-64 executable `app.exe`.
 
-  - `GOOS=darwin GOARCH=arm64 go build`
+  - 🍏 `GOOS=darwin GOARCH=arm64 go build`
 
-    creates a macOS/arm64 executable `app`.
+    $\to$ macOS/arm64 executable `app`.
+
+  - 🐧 `GOOS=linux GOARCH=arm64 go build`
+
+    $\to$ raspberry-pi/arm-64 executable `app.exe`.
+
+---
+
+### Embedded Systems
+
+![The Go Programming Language](https://tinygo.org/images/tinygo-logo.png)
+
+Try [TinyGo](https://tinygo.org/)!
+
+(Arduino, Raspberry Pi Pico, etc.)
+
+
