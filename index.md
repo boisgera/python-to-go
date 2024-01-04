@@ -16,6 +16,8 @@ Introduction to Go for Python devs
 
   - 📖 [A Tour of Go](https://go.dev/tour/welcome/1)
 
+  - 📖 [Go Playground](https://go.dev/play/) 
+
   - 📖 [Go by Example](https://gobyexample.com/)
 
   - 📖 [Effective Go](https://go.dev/doc/effective_go)
@@ -61,10 +63,10 @@ The program fails at runtime:
 ```bash
 $ python factorial.py 10
 Traceback (most recent call last):
-  File "/home/boisgera/tmp/r/factorial.py", line 11, in <module>
+  File "/home/boisgera/tmp/tmp/factorial.py", line 11, in <module>
     print(factorial(n))
           ^^^^^^^^^^^^
-  File "/home/boisgera/tmp/r/factorial.py", line 6, in factorial
+  File "/home/boisgera/tmp/tmp/factorial.py", line 6, in factorial
     for i in range(n):
              ^^^^^^^^
 TypeError: 'str' object cannot be interpreted as an integer
@@ -150,6 +152,18 @@ print(factorial(n))
 
 ### Static Type Checking
 
+With [mypy](https://mypy-lang.org/):
+
+```
+$ mypy factorial.py 
+factorial.py:11: error: 
+Argument 1 to "factorial" has incompatible type "str"; 
+expected "int"  [arg-type]
+Found 1 error in 1 file (checked 1 source file)
+```
+
+---
+
 in Visual Studio Code, with [mypy](https://mypy-lang.org/) enabled:
 
 
@@ -229,14 +243,28 @@ which *feels* like dynamical typing (but isn't 😀).
  
 ---
 
-```bash
-$ yaegi
-> a := "Hello world!"
-: Hello world!
-> a = "Hello gophers! 🦫"
-: Hello gophers! 🦫
-> a = 42
-1:32: cannot convert 42 to string
+### Buggy Program (invalid types)
+
+```go
+package main
+
+func main() {
+	a := "Hello world!"
+	a = "Hello gophers! 🦫"
+	a = 42
+	println(a)
+}
+```
+
+---
+
+### Compilation Step
+
+```
+$ go build sketch.go 
+# command-line-arguments
+./sketch.go:6:6: 
+cannot use 42 (untyped int constant) as string value in assignment
 ```
 
 ---
@@ -253,24 +281,6 @@ $ yaegi
 
 ---
 
-# Do It Yourself
-
-```
-$ python -c 'print(type(42).__name__)'
-int
-```
-
-```
-go install github.com/traefik/yaegi/cmd/yaegi@latest
-```
-
-```
-$ yaegi run -e 'reflect.TypeOf(42)'
-int
-```
-
----
-
 # 🧭 Functions
 
 ---
@@ -281,7 +291,7 @@ int
 from datetime import date
 
 def get_duration(year):
-    return date.today().year - self.year
+    return date.today().year - year
 ```
 
 ---
@@ -289,7 +299,7 @@ def get_duration(year):
 ## 🦫 Go
 
 ```go
-import time
+import "time"
 
 func GetDuration(year int) int {
     return time.Now().Year() - year
@@ -526,15 +536,21 @@ Assignment **rebinds** the pointer to a new location.
 Variables store data in a fixed location:
 
 ```go
-$ yaegi
-> a := 1 + 1
-: 2
-> &a
-: 0xc00003a280
-> a = 42
-: 42
-> &a
-: 0xc00003a280
+package main
+
+func main() {
+	a := 1 + 1
+	println(&a)
+	a = 42
+	println(&a)
+}
+```
+
+Output:
+
+```
+0xc00003e728
+0xc00003e728
 ```
 
 ---
@@ -542,18 +558,18 @@ $ yaegi
 We can also store content at a location
 
 ```go
-> a := 1 + 1
-: 2
-> p := &a // address of an int
-: 0xc00014d230
-> reflect.TypeOf(a)
-: int
-> reflect.TypeOf(p)
-: *int
-> *p = 42
-: 42
-> a
-: 42
+package main
+
+func main() {
+	a := 1 + 1
+	p := &a
+	*p = 42
+	println(42)
+}
+```
+Output:
+```
+42
 ```
 
 ---
@@ -599,32 +615,40 @@ Robert Pike
 
 ```bash
 $ go mod init app
-$ cat go.mod
+```
+
+Crée le fichier `go.mod`:
+
+```bash
 module app
 
-go 1.19
+go 1.25.1
 ```
 
 ---
 
-`app/person/person.go`
+`person.go`
 
 ```go
-package person
+package main
 
 import "time"
 
 type Person struct {
-    Name string
-    Year int
+	Name string
+	Year int
+}
+
+func (p Person) Age() int {
+	return time.Now().Year() - p.Year
 }
 
 func (p *Person) SetName(name string) {
-    p.Name = name
+	p.Name = name
 }
 
 func (p *Person) SetYear(year int) {
-    p.Year = year
+	p.Year = year
 }
 ```
 
@@ -635,17 +659,40 @@ func (p *Person) SetYear(year int) {
 ```go
 package main
 
-import (
-    "app/person"
-    "fmt"
-)
-
 func main() {
-    rob := person.Person{}
-    rob.SetName("Robert Pike")
-    rob.SetYear(1956)
-    fmt.Println(rob.Name)
-    fmt.Println(rob.Year)
-    fmt.Println(rob.Age())
+	rob := Person{}
+	rob.SetName("Robert Pike")
+	rob.SetYear(1956)
+	println(rob.Name)
+	println(rob.Year)
+	println(rob.Age())
 }
 ```
+
+------
+### Compilation
+
+On my (Linux) computer,
+
+```bash
+$ go build
+```
+
+ creates a `app` executable for Linux.
+```bash
+$ ./app
+Robert Pike
+1956
+68
+```
+
+---
+### Cross-compilation
+
+  - `GOOS=windows GOARCH=amd64 go build`
+
+    creates a windows/amd-64 executable `app.exe`.
+
+  - `GOOS=darwin GOARCH=arm64 go build`
+
+    creates a macOS/arm64 executable `app`.
