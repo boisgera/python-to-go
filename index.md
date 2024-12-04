@@ -328,6 +328,8 @@ func GetDuration(year int) int {
 
 ---
 
+(with the go interpreter/REPL [yaegi](https://github.com/traefik/yaegi))
+
 ```
 > s := []int{1, 2, 4}
 : [1 2 4]
@@ -399,7 +401,9 @@ def main():
 
 
 ```go
- type Person struct {
+package main
+
+type Person struct {
     Name string
     Year int
 }
