@@ -543,10 +543,10 @@ Variables store data in a fixed location:
 package main
 
 func main() {
-	a := 1 + 1
-	println(&a)
-	a = 42
-	println(&a)
+    a := 1 + 1
+    println(&a)
+    a = 42
+    println(&a)
 }
 ```
 
@@ -565,10 +565,10 @@ We can also store content at a location
 package main
 
 func main() {
-	a := 1 + 1
-	p := &a
-	*p = 42
-	println(42)
+    a := 1 + 1
+    p := &a
+    *p = 42
+    println(a)
 }
 ```
 Output:

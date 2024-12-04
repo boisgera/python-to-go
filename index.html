@@ -485,10 +485,10 @@ c 3
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
 <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
-	a := <span class="hljs-number">1</span> + <span class="hljs-number">1</span>
-	<span class="hljs-built_in">println</span>(&amp;a)
-	a = <span class="hljs-number">42</span>
-	<span class="hljs-built_in">println</span>(&amp;a)
+    a := <span class="hljs-number">1</span> + <span class="hljs-number">1</span>
+    <span class="hljs-built_in">println</span>(&amp;a)
+    a = <span class="hljs-number">42</span>
+    <span class="hljs-built_in">println</span>(&amp;a)
 }
 </code></pre>
 <p>Output:</p>
@@ -501,10 +501,10 @@ c 3
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
 <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
-	a := <span class="hljs-number">1</span> + <span class="hljs-number">1</span>
-	p := &amp;a
-	*p = <span class="hljs-number">42</span>
-	<span class="hljs-built_in">println</span>(<span class="hljs-number">42</span>)
+    a := <span class="hljs-number">1</span> + <span class="hljs-number">1</span>
+    p := &amp;a
+    *p = <span class="hljs-number">42</span>
+    <span class="hljs-built_in">println</span>(a)
 }
 </code></pre>
 <p>Output:</p>
