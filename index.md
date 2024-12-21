@@ -249,10 +249,10 @@ which *feels* like dynamical typing (but isn't 😀).
 package main
 
 func main() {
-	a := "Hello world!"
-	a = "Hello gophers! 🦫"
-	a = 42
-	println(a)
+    a := "Hello world!"
+    a = "Hello gophers! 🦫"
+    a = 42
+    println(a)
 }
 ```
 
@@ -290,7 +290,7 @@ cannot use 42 (untyped int constant) as string value in assignment
 ```python
 from datetime import date
 
-def get_duration(year):
+def get_duration(year: int) -> int:
     return date.today().year - year
 ```
 
@@ -317,13 +317,13 @@ func GetDuration(year int) int {
 >>> l.append(8)
 >>> l
 [1, 2, 4, 8]
->>> for n in l:
-...     print(n)
+>>> for i, n in enumerate(l):
+...     print(i, n)
 ... 
-1
-2
-4
-8   
+0 1
+1 2
+2 4
+3 8   
 ```
 
 ---
@@ -337,11 +337,11 @@ func GetDuration(year int) int {
 : 1
 > s = append(s, 8)
 : [1 2 4 8]
-> for n := range s { println(n) }
-0
-1
-2
-3
+> for i, n := range s { println(i, n) }
+0 1
+1 2
+2 4
+3 8
 : [1 2 4 8]
 ```
 
@@ -496,7 +496,7 @@ func main() {
 $ go run app.go 
 
 0
-2023
+2024
 ```
 
 Uhu?
@@ -608,7 +608,7 @@ func main() {
 $ go run app.go 
 Robert Pike
 1956
-67
+68
 ```
 
 # 👍
@@ -639,20 +639,20 @@ package main
 import "time"
 
 type Person struct {
-	Name string
-	Year int
+    Name string
+    Year int
 }
 
 func (p Person) Age() int {
-	return time.Now().Year() - p.Year
+    return time.Now().Year() - p.Year
 }
 
 func (p *Person) SetName(name string) {
-	p.Name = name
+    p.Name = name
 }
 
 func (p *Person) SetYear(year int) {
-	p.Year = year
+    p.Year = year
 }
 ```
 
@@ -664,12 +664,12 @@ func (p *Person) SetYear(year int) {
 package main
 
 func main() {
-	rob := Person{}
-	rob.SetName("Robert Pike")
-	rob.SetYear(1956)
-	println(rob.Name)
-	println(rob.Year)
-	println(rob.Age())
+    rob := Person{}
+    rob.SetName("Robert Pike")
+    rob.SetYear(1956)
+    println(rob.Name)
+    println(rob.Year)
+    println(rob.Age())
 }
 ```
 
@@ -694,17 +694,20 @@ Robert Pike
 ---
 ### 🖥️ Cross-compilation
 
-  - 🪟 `GOOS=windows GOARCH=amd64 go build`
+
+Set the environment variables `GOOS` and `GOARCH`, then `go build` as usual:
+
+  - 🪟 `GOOS=windows` and `GOARCH=amd64`
 
     $\to$ windows/amd-64 executable `app.exe`.
 
-  - 🍏 `GOOS=darwin GOARCH=arm64 go build`
+  - 🍏 `GOOS=darwin` `GOARCH=arm64`
 
     $\to$ macOS/arm64 executable `app`.
 
-  - 🐧 `GOOS=linux GOARCH=arm64 go build`
+  - 🐧 `GOOS=linux` and `GOARCH=arm64`
 
-    $\to$ raspberry-pi/arm-64 executable `app.exe`.
+    $\to$ raspberry-pi/arm-64 executable `app`.
 
 ---
 
