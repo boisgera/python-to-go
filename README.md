@@ -9,7 +9,7 @@ An introduction to Go for Python devs
 
 [![](images/slide.png)](https://boisgera.github.io/python-to-go/)
 
-## Build
+## 🛠️ Build
 
 Install [Node.js](https://nodejs.org) then execute the command
 
