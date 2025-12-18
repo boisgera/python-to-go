@@ -1,2 +1,1 @@
-#!/bin/bash
-npx @marp-team/marp-cli@latest --html index.md
+npx @marp-team/marp-cli index.md

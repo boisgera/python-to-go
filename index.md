@@ -385,6 +385,8 @@ c 3
 
 # 🐍 Objects $\to$ 🦫 Structs
 
+### 🐍 Python
+
 ```python
 class Person:
     def __init__(self, name, year):
@@ -399,6 +401,25 @@ def main():
 
 ---
 
+### 🐍 Modern Python
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    year: int
+
+def main():
+    guido = Person(name="Guido van Rossum", year=1956)
+    print(guido.name)
+    print(guido.year)
+```
+
+---
+
+### 🦫 Go 
 
 ```go
 package main
@@ -424,12 +445,13 @@ func main() {
 ### 🐍 Python methods
 
 ```python
+from dataclasses import dataclass
 from datetime import date
 
+@dataclass
 class Person:
-    def __init__(self, name, year):
-        self.name = name
-        self.year = year
+    name: str
+    age: int
     def get_age(self):
         return date.today().year - self.year
 
@@ -499,14 +521,14 @@ $ go run app.go
 2024
 ```
 
-Uhu?
+😕 Uhu?
 
 ---
 
 # Assignment
 
 
-What is the semantics of assignment ?
+🤔 What is the semantics of assignment ?
 
     sum = 1 + 1
 
@@ -579,6 +601,21 @@ Output:
 ---
 
 ### Back to the Go methods
+
+
+```go
+func (p Person) SetName(name string) {
+    p.Name = name
+}
+```
+This method **copies** the original person to the local variable `p` of the method, then modifies this copy. 
+
+**The original person has not been modified!**
+
+To avoid that, provide a pointer argument instead.
+
+
+---
 
 ```go
 func (p *Person) SetName(name string) {
