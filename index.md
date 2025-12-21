@@ -451,7 +451,7 @@ from datetime import date
 @dataclass
 class Person:
     name: str
-    age: int
+    year: int
     def get_age(self):
         return date.today().year - self.year
 
