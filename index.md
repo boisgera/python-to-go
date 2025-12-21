@@ -518,7 +518,7 @@ func main() {
 $ go run app.go 
 
 0
-2024
+2025
 ```
 
 😕 Uhu?
@@ -645,7 +645,7 @@ func main() {
 $ go run app.go 
 Robert Pike
 1956
-68
+69
 ```
 
 # 👍
@@ -725,7 +725,7 @@ $ go build
 $ ./app
 Robert Pike
 1956
-68
+69
 ```
 
 ---
